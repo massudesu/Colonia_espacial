@@ -1,5 +1,5 @@
-package recursos;
 
+package recursos;
 public abstract class Recursos {
 
     // Atributos

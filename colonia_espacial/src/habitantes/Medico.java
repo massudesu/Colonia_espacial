@@ -12,12 +12,12 @@ public class Medico extends Habitantes {
             int idade,
             double saude,
             double energia,
-            double salario,
+            double saldo,
             String especialidade,
             int pacientes
     ) {
 
-        super(nome, idade, saude, energia, salario);
+        super(nome, idade, saude, energia, saldo);
 
         this.especialidade = especialidade;
         this.pacientes = pacientes;

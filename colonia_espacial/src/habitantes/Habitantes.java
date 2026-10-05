@@ -24,6 +24,7 @@ public abstract class Habitantes {
         this.saldo = saldo;
     }
 
+
     // Metodo abstrato
     public abstract void trabalhar();
 

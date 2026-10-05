@@ -2,25 +2,15 @@ package habitantes;
 
 public class Agricultor extends Habitantes {
 
-    // Atributos
-    private String tipoCultivo;
-    private double produtividade;
-
     // Construtor
     public Agricultor(
             String nome,
             int idade,
             double saude,
             double energia,
-            double salario,
-            String tipoCultivo,
-            double produtividade
-            ) {
-
-        super(nome, idade, saude, energia, salario);
-
-        this.tipoCultivo = tipoCultivo;
-        this.produtividade = produtividade;
+            double saldo
+    ) {
+        super(nome, idade, saude, energia, saldo);
     }
 
     @Override
@@ -29,8 +19,7 @@ public class Agricultor extends Habitantes {
     }
 
     public void cultivar() {
-        System.out.println(getNome() + " está cultivando "
-                + tipoCultivo + ".");
+        System.out.println(getNome() + " está trabalhando na agricultura.");
     }
 
     public void colher() {
