@@ -1,6 +1,4 @@
 package naves;
-
-
 public abstract class Naves {
 
     // Atributos

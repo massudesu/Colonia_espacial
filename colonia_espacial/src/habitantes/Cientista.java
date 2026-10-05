@@ -12,12 +12,12 @@ public class Cientista extends Habitantes {
             int idade,
             double saude,
             double energia,
-            double salario,
+            double saldo,
             String areaPesquisa,
             int nivelPesquisa
     ) {
 
-        super(nome, idade, saude, energia, salario);
+        super(nome, idade, saude, energia, saldo);
 
         this.areaPesquisa = areaPesquisa;
         this.nivelPesquisa = nivelPesquisa;
