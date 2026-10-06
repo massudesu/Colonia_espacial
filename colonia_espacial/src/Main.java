@@ -110,6 +110,154 @@ void main(){
                         break;
                 }
                 break;
+            case 2:
+                println("--- Gerenciar Estruturas");
+                println("1. Listar Estruturas");
+                println("2. Produzir/Executar função");
+                println("3. Melhorar Estrutura");
+                println("4. Reparar Estrutura");
+                println("5. Construir nova Estrutura");
+                int opcaoEst = Integer.parseInt(readln("Escolha: "));
+                switch (opcaoEst){
+                    case 1:
+                        println("--- Lista de Estruturas");
+                        for(int i = 0; i <estruturas.size(); i++){
+                            Estruturas e = estruturas.get(i);
+                            println(i + ". " + e.getNome() + " (" + e.getClass().getSimpleName() +
+                                    ") - Nível: " + e.getNivel() + " | Vida: " + e.getVida());
+                        }
+                        break;
+                    case 2:
+                        if (estruturas.isEmpty())
+                            break;
+                        int indiceProd = Integer.parseInt(readln("Escolha o indice da estrutura"));
+                        if (indiceProd >= 0 && indiceProd < estruturas.size()){
+                            estruturas.get(indiceProd).produzir();
+                        } else {
+                            println("Índice inválido!");
+                        }
+                        break;
+                    case 3:
+                        if (estruturas.isEmpty())
+                            break;
+                        int idiceMel = Integer.parseInt(readln("Escolha o índice para melhorar: "));
+                        if (idiceMel >= 0 && idiceMel < estruturas.size()) {
+                            estruturas.get(idiceMel).melhorar();
+                        } else {
+                            println("Índice inválido!");
+                        }
+                        break;
+
+                    case 4:
+                        if (estruturas.isEmpty())
+                            break;
+
+                        int idiceRep = Integer.parseInt(readln("Escolha o índice para reparar: "));
+                        if (idiceRep >= 0 && idiceRep < estruturas.size()) {
+                            estruturas.get(idiceRep).reparar();
+                        } else {
+                            println("Índice inválido!");
+                        }
+                        break;
+                    case 5:
+                        String nomeEst = readln("Nome da nova Estrutura: ");
+                        println("1. Fazenda");
+                        println("2. Habitação");
+                        println("3. Hospital");
+                        println("4. Laboratorio");
+                        println("5. Usina de Energia");
+                        int tipoEst = Integer.parseInt(readln("Escolha: "));
+
+                        switch (tipoEst){
+                            case 1:
+                                boolean jaExisteFazenda = false;
+
+                                for (Estruturas e : estruturas) {
+                                    if (e instanceof Fazenda) {
+                                        jaExisteFazenda = true;
+                                        break;
+                                    }
+                                }
+
+                                if (jaExisteFazenda) {
+                                    println("Erro: Já existe uma Fazenda construída!");
+                                } else {
+                                    String qualCultivo = readln("O que vai cultivar: Milho, Soja, Batata");
+                                    estruturas.add(new Fazenda(nomeEst, 1, 100,50 ,qualCultivo,1.5));
+                                    println("Fazenda criada com sucesso!");
+                                }
+                                break;
+                            case 2:
+                                boolean jaExisteHabitacao = false;
+
+                                for (Estruturas e : estruturas) {
+                                    if (e instanceof Habitacao) {
+                                        jaExisteHabitacao = true;
+                                        break;
+                                    }
+                                }
+                                if (jaExisteHabitacao) {
+                                    println("Erro: Já existe uma Habitação construída!");
+                                } else {
+                                    estruturas.add(new Habitacao(nomeEst, 1, 100, 2));
+                                    println("Habitação criada com sucesso!");
+                                }
+                                break;
+                            case 3:
+                                boolean jaExisteHospital = false;
+
+                                for (Estruturas e : estruturas) {
+                                    if (e instanceof Hospital) {
+                                        jaExisteHospital = true;
+                                        break;
+                                    }
+                                }
+                                if (jaExisteHospital) {
+                                    println("Erro: Já existe um Hospital construído!");
+                                } else {
+                                    estruturas.add(new Hospital(nomeEst, 1, 100, 10));
+                                    println("Hospital criado com sucesso!");
+                                }
+                                break;
+                            case 4:
+                                boolean jaExisteLaboratorio = false;
+
+                                for (Estruturas e : estruturas) {
+                                    if (e instanceof Laboratorio) {
+                                        jaExisteLaboratorio = true;
+                                        break;
+                                    }
+                                }
+                                if (jaExisteLaboratorio) {
+                                    println("Erro: Já existe um Laboratorio construído!");
+                                } else {
+                                    estruturas.add(new Laboratorio(nomeEst, 1, 100, 2));
+                                    println("Laboratorio criado com sucesso!");
+                                }
+                                break;
+                            case 5:
+                                boolean jaExisteUsina = false;
+
+                                for (Estruturas e : estruturas) {
+                                    if (e instanceof UsinaEnergia) {
+                                        jaExisteUsina = true;
+                                        break;
+                                    }
+                                }
+                                if (jaExisteUsina) {
+                                    println("Erro: Já existe uma Usina de Energia construída!");
+                                } else {
+                                    estruturas.add(new UsinaEnergia(nomeEst, 1, 100, 20));
+                                    println("Usina de Energia criada com sucesso!");
+                                }
+                                break;
+                        }
+                }
+                break;
+            case 0:
+                println("Saindo...");
+                executando = false;
+
         }
     }
 }
