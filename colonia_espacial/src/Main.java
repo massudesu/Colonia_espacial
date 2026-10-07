@@ -254,10 +254,149 @@ void main(){
                         }
                 }
                 break;
-            case 0:
-                println("Saindo...");
-                executando = false;
+            case 3: // RECURSOS
+                println("--- GERENCIAR RECURSOS ---");
+                println("1. Ver Estado dos Recursos");
+                println("2. Adicionar Recurso");
+                println("3. Consumir Recurso");
+                int opRec = Integer.parseInt("Escolha: ");
 
+                switch (opRec) {
+                    case 1:
+                        println("--- Recursos Atuais ---");
+                        for (Recursos r : recursos) {
+                            r.mostrarQuantidade();
+                        }
+                        break;
+
+                    case 2:
+                        println("Escolha o recurso a adicionar:");
+                        for (int i = 0; i < recursos.size(); i++) {
+                            println(i + ". " + recursos.get(i).getNome());
+                        }
+                        int indiceAdd = Integer.parseInt(readln());
+                        if (indiceAdd >= 0 && indiceAdd < recursos.size()) {
+                            recursos.get(indiceAdd).adicionar();
+                        }
+                        break;
+
+                    case 3:
+                        println("Escolha o recurso a consumir:");
+                        for (int i = 0; i < recursos.size(); i++) {
+                            println(i + ". " + recursos.get(i).getNome());
+                        }
+                        int indiceCon = Integer.parseInt(readln());
+                        if (indiceCon >= 0 && indiceCon < recursos.size()) {
+                            recursos.get(indiceCon).consumir();
+                        }
+                        break;
+                }
+                break;
+
+            case 4: // NAVES
+                println("--- GERENCIAR NAVES ---");
+                println("1. Status das Naves");
+                println("2. Realizar Viagem");
+                println("3. Abastecer Nave");
+                int opNave = Integer.parseInt(readln("Escolha: "));
+
+                switch (opNave) {
+                    case 1:
+                        println("--- Status da Frota ---");
+                        for (int i = 0; i < naves.size(); i++) {
+                            println("[" + i + "]");
+                            naves.get(i).mostrarStatus();
+                            println("--------------------");
+                        }
+                        break;
+
+                    case 2:
+                        if (naves.isEmpty()) break;
+                        int indiceNav = Integer.parseInt(readln("Escolha o índice da nave: "));
+                        if (indiceNav >= 0 && indiceNav < naves.size()) {
+                            naves.get(indiceNav).viajar();
+                        }
+                        break;
+
+                    case 3:
+                        if (naves.isEmpty()) break;
+                        int indiceAbas = Integer.parseInt(readln("Escolha o índice da nave a reabastecer: "));
+                        if (indiceAbas >= 0 && indiceAbas < naves.size()) {
+                            naves.get(indiceAbas).setCombustivel(Combustivel.CHEIO);
+                            println(naves.get(indiceAbas).getNome() + " reabastecida para CHEIO!");
+                        }
+                        break;
+                }
+                break;
+
+            case 5: // MISSÕES
+                println("--- GERENCIAR MISSÕES ---");
+                println("1. Listar Missões");
+                println("2. Iniciar Missão");
+                println("3. Executar Passos da Missão");
+                println("4. Finalizar Missão");
+                println("5. Adicionar Tripulante a uma Missão");
+                int opcaoMis = Integer.parseInt(readln("Escolha: "));
+
+                switch (opcaoMis) {
+                    case 1:
+                        println("--- Missões Cadastradas ---");
+                        for (int i = 0; i < missoes.size(); i++) {
+                            Missoes m = missoes.get(i);
+                            println(i + ". " + m.getNome() + " | Status: " + m.getStatus() +
+                                    " | Nave: " + m.getNave().getNome() + " | Tripulantes: " + m.getTripulacao().size());
+                        }
+                        break;
+
+                    case 2:
+                        if (missoes.isEmpty()) break;
+                        int indiceIni = Integer.parseInt(readln("Escolha o índice da missão: "));
+                        if (indiceIni >= 0 && indiceIni < missoes.size()) {
+                            missoes.get(indiceIni).iniciar();
+                        }
+                        break;
+
+                    case 3:
+                        if (missoes.isEmpty()) break;
+                        int indiceExe = Integer.parseInt(readln("Escolha o índice da missão: "));
+                        if (indiceExe >= 0 && indiceExe < missoes.size()) {
+                            missoes.get(indiceExe).executar();
+                        }
+                        break;
+
+                    case 4:
+                        if (missoes.isEmpty()) break;
+                        int indiceFin = Integer.parseInt(readln("Escolha o índice da missão: "));
+                        if (indiceFin >= 0 && indiceFin < missoes.size()) {
+                            missoes.get(indiceFin).finalizar();
+                        }
+                        break;
+
+                    case 5:
+                        if (missoes.isEmpty() || habitantes.isEmpty()) {
+                            println("É necessário ter missões e habitantes cadastrados!");
+                            break;
+                        }
+                        int indiceMi = Integer.parseInt(readln("Escolha o índice da missão: "));
+                        int indiceHa = Integer.parseInt(readln("Escolha o índice do habitante: "));
+
+                        if (indiceMi >= 0 && indiceMi < missoes.size() && indiceHa >= 0 && indiceHa < habitantes.size()) {
+                            missoes.get(indiceMi).adicionarTripulante(habitantes.get(indiceHa));
+                            println(habitantes.get(indiceHa).getNome() + " adicionado(a) à missão " + missoes.get(indiceMi).getNome() + "!");
+                        } else {
+                            println("Índices inválidos!");
+                        }
+                        break;
+                }
+                break;
+
+            case 0:
+                executando = false;
+                println("Encerrando o simulador...");
+                break;
+
+            default:
+                println("Opção inválida! Tente novamente.");
         }
     }
 }
