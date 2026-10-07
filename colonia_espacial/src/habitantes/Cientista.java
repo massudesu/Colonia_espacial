@@ -2,37 +2,21 @@ package habitantes;
 
 public class Cientista extends Habitantes {
 
-    // Atributos
     private String areaPesquisa;
     private int nivelPesquisa;
 
-    // Construtor
-    public Cientista(
-            String nome,
-            int idade,
-            double saude,
-            double energia,
-            double saldo,
-            String areaPesquisa,
-            int nivelPesquisa
-    ) {
-
+    public Cientista(String nome, int idade, double saude, double energia, double saldo, String areaPesquisa, int nivelPesquisa) {
         super(nome, idade, saude, energia, saldo);
-
         this.areaPesquisa = areaPesquisa;
         this.nivelPesquisa = nivelPesquisa;
     }
 
     @Override
-    public void trabalhar() {
-        pesquisar();
-    }
-
-    public void pesquisar() {
-        System.out.println(getNome() + " está realizando uma pesquisa.");
-    }
-
-    public void analisar() {
-        System.out.println(getNome() + " está analisando os resultados.");
+    public String trabalhar() {
+        if (gastarEnergiaEGanharSaldo()) {
+            System.out.println(getNome() + " pesquisou fontes de energia e gerou +10 de Energia!");
+            return "ENERGIA";
+        }
+        return null;
     }
 }
