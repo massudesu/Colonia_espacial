@@ -1,67 +1,45 @@
-
 package recursos;
+
 public abstract class Recursos {
 
-    // Atributos
     private String nome;
     private float quantidade;
     private float capacidadeMaxima;
 
-    // Construtor
-    public Recursos(
-            String nome,
-            float quantidade,
-            float capacidadeMaxima
-    ) {
+    public Recursos(String nome, float quantidade, float capacidadeMaxima) {
         this.nome = nome;
         this.capacidadeMaxima = capacidadeMaxima;
+        if (quantidade < 0) this.quantidade = 0;
+        else if (quantidade > capacidadeMaxima) this.quantidade = capacidadeMaxima;
+        else this.quantidade = quantidade;
+    }
 
-        if (quantidade < 0) {
-            this.quantidade = 0;
-        } else if (quantidade > capacidadeMaxima) {
-            this.quantidade = capacidadeMaxima;
+    public void adicionarQtd(float qtd) {
+        if (quantidade + qtd <= capacidadeMaxima) {
+            quantidade += qtd;
+            System.out.println(qtd + " unidades de " + nome + " adicionadas!");
         } else {
-            this.quantidade = quantidade;
+            quantidade = capacidadeMaxima;
+            System.out.println(nome + " atingiu a capacidade máxima (" + capacidadeMaxima + ")!");
         }
     }
 
-    // Adiciona uma unidade do recurso
-    public void adicionar() {
-        if (quantidade < capacidadeMaxima) {
-            quantidade++;
-            System.out.println(nome + " adicionado!");
+    public boolean consumirQtd(float qtd) {
+        if (quantidade >= qtd) {
+            quantidade -= qtd;
+            System.out.println(qtd + " de " + nome + " consumido!");
+            return true;
         } else {
-            System.out.println(nome + " atingiu a capacidade máxima!");
+            System.out.println("Recurso insuficiente de " + nome + "! Necessário: " + qtd + ", Atual: " + quantidade);
+            return false;
         }
     }
 
-    // Consome uma unidade do recurso
-    public void consumir() {
-        if (quantidade > 0) {
-            quantidade--;
-            System.out.println(nome + " consumido!");
-        } else {
-            System.out.println("Não há " + nome + " disponível!");
-        }
-    }
-
-    // Mostra a quantidade disponível
     public void mostrarQuantidade() {
-        System.out.println(
-                nome + ": " + quantidade + "/" + capacidadeMaxima
-        );
+        System.out.println(nome + ": " + quantidade + "/" + capacidadeMaxima);
     }
 
-    // Getters
-    public String getNome() {
-        return nome;
-    }
-
-    public float getQuantidade() {
-        return quantidade;
-    }
-
-    public float getCapacidadeMaxima() {
-        return capacidadeMaxima;
-    }
+    public String getNome() { return nome; }
+    public float getQuantidade() { return quantidade; }
+    public float getCapacidadeMaxima() { return capacidadeMaxima; }
 }

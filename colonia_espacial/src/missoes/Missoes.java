@@ -1,6 +1,5 @@
 package missoes;
 
-
 import habitantes.Habitantes;
 import naves.Naves;
 
@@ -52,7 +51,17 @@ public abstract class Missoes {
     public void finalizar() {
         if (status.equals("Em andamento")) {
             status = "Concluída";
-            System.out.println("Missão " + nome + " finalizada!");
+            System.out.println("Missão " + nome + " finalizada com sucesso!");
+
+            // Recompensa para a tripulação
+            if (tripulacao.isEmpty()) {
+                System.out.println("Nenhum tripulante estava cadastrado nesta missão.");
+            } else {
+                System.out.println("Recompensa de missão concedida à tripulação (+R$ 300,00 para cada):");
+                for (Habitantes h : tripulacao) {
+                    h.receberDinheiro(300);
+                }
+            }
         } else {
             System.out.println("Não é possível finalizar esta missão.");
         }
