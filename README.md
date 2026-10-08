@@ -1,3 +1,9 @@
+Desenvolvido por:
+Nicolas Massuda
+Vitor Alencar
+
+
+
 # Simulação Colônia Espacial
 
 Aplicação desenvolvida em Java para simular a gestão completa de uma colônia espacial via terminal. O sistema permite controlar habitantes, construir estruturas, administrar recursos, gerir uma frota de naves e executar missões espaciais de exploração e pesquisa.
