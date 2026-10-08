@@ -1,6 +1,6 @@
 Desenvolvido por:
-Nicolas Massuda
-Vitor Alencar
+* Nicolas Massuda
+* Vitor Alencar
 
 
 
